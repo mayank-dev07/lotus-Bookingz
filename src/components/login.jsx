@@ -13,45 +13,66 @@ axios
 
 export default function login() {
   const navigate = useNavigate();
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-  function login(event) {
-    event.preventDefault();
-    const data = {
-      Email: email,
-      Password: password,
-    };
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  const Submit = async (e) => {
+    e.preventDefault();
+    console.log(credentials);
     const error = {};
 
-    if (!data.Email) {
-      error.email = "Please enter email";
-    } else if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(data.Email)
-    ) {
-      error.email = "Enter valid email";
-    }
+    // if (!credentials.email) {
+    //   error.email = "Please enter email";
+    // } else if (
+    //   !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
+    //     credentials.email
+    //   )
+    // ) {
+    //   error.email = "Enter valid email";
+    // }
 
-    if (!data.Password) {
-      error.password = "Please enter password";
-    } else if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-        data.Password
-      )
-    ) {
-      error.password =
-        "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.";
-    }
+    // if (!credentials.password) {
+    //   error.password = "Please enter password";
+    // } else if (
+    //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+    //     credentials.password
+    //   )
+    // ) {
+    //   error.password =
+    //     "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.";
+    // }
 
-    if (error.email || error.password) {
+    // if (error.email || error.password) {
+    //   console.log(error);
+    // } else {
+    console.log(credentials);
+    try {
+      const response = await axios.post(
+        "http://10.21.84.3:8000/hall/api/token/",
+        credentials
+      );
+      console.log(response.data);
+      const { access, refresh } = response.data;
+
+      localStorage.setItem("accesstoken", access);
+      localStorage.setItem("refreshToken", refresh);
+    } catch (error) {
       console.log(error);
-    } else {
-      console.log(data);
-      navigate("/home");
-      event.reset();
     }
-  }
+    // }
+    // navigate("/home");
+    // event.reset();
+    // }
+  };
 
   return (
     <>
@@ -66,7 +87,7 @@ export default function login() {
                 LOGIN
               </h2>
               <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form action="" onSubmit={login} className="space-y-6">
+                <form action="" onSubmit={Submit} className="space-y-6">
                   <div>
                     <label
                       htmlFor="email"
@@ -75,11 +96,11 @@ export default function login() {
                     </label>
                     <div className="mt-2">
                       <input
-                        type="email"
-                        name="Email"
+                        type="text"
+                        name="email"
                         id="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={credentials.email}
+                        onChange={handleChange}
                         required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-md ring-1 ring-red-300 p-3"
                       />
@@ -97,11 +118,11 @@ export default function login() {
                     <div className="mt-2">
                       <input
                         type="password"
-                        name="Password"
+                        name="password"
                         id="Password"
                         required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={credentials.password}
+                        onChange={handleChange}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-md ring-1 ring-red-300 p-3"
                       />
                     </div>
