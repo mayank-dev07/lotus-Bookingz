@@ -14,7 +14,7 @@ axios
 export default function login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -57,7 +57,7 @@ export default function login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.84.3:8000/hall/api/token/",
+        "http://10.21.86.132:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);
@@ -97,9 +97,9 @@ export default function login() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="email"
+                        name="username"
                         id="Email"
-                        value={credentials.email}
+                        value={credentials.username}
                         onChange={handleChange}
                         required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-md ring-1 ring-red-300 p-3"
