@@ -1,7 +1,8 @@
 import axios from "axios";
+import Back from "./redirect";
 
 const instance = axios.create({
-  baseURL: "http://10.21.86.132:8000/hall/",
+  baseURL: "http://10.21.81.68:8000/hall/",
 });
 
 instance.interceptors.request.use(
@@ -23,13 +24,11 @@ instance.interceptors.response.use(
   },
   async (error) => {
     console.log(error);
-    if (error.response.status === 401 && !error.config._retry) {
-      error.config._retry = true;
-
+    if (error.response.status === 401) {
       try {
         const refreshToken = localStorage.getItem("refreshToken");
         const response = await axios.post(
-          "http://10.21.86.132:8000/hall/api/token/refresh/",
+          "http://10.21.81.68:8000/hall/api/token/refresh/",
           {
             refresh: refreshToken,
             headers: {
@@ -37,15 +36,18 @@ instance.interceptors.response.use(
             },
           }
         );
-
-        console.log(response.data.access);
+        console.log(response.data);
 
         localStorage.setItem("accesstoken", response.data.access);
 
         error.config.headers.Authorization = `Bearer ${response.data.access}`;
-        return axios(error.config);
       } catch (error) {
         console.log(error);
+        console.log(error.response.status);
+        if (error.response.status === 400) {
+          // window.location.href = "/";
+          Back();
+        }
       }
     }
     return Promise.reject(error);

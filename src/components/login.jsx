@@ -2,15 +2,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-axios
-  .post()
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
 export default function login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -57,7 +48,7 @@ export default function login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.86.132:8000/hall/api/token/",
+        "http://10.21.81.68:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);
@@ -65,13 +56,11 @@ export default function login() {
 
       localStorage.setItem("accesstoken", access);
       localStorage.setItem("refreshToken", refresh);
+      navigate("/home");
+      e.reset();
     } catch (error) {
       console.log(error);
     }
-    // }
-    // navigate("/home");
-    // event.reset();
-    // }
   };
 
   return (
@@ -92,7 +81,8 @@ export default function login() {
                     <label
                       htmlFor="email"
                       className="block text-sm text-red-200 font-medium leading-6 ">
-                      Email address
+                      {/* Email address */}
+                      Username
                     </label>
                     <div className="mt-2">
                       <input

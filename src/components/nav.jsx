@@ -5,9 +5,9 @@ import Auth from "./axios";
 import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "#", current: false },
+  { name: "Home", href: "/home", current: false },
   { name: "About", href: "#", current: false },
-  { name: "Conact", href: "#", current: false },
+  { name: "Create Hall", href: "/hall", current: false },
   { name: "Booking", href: "#", current: false },
 ];
 export default function Nav() {
@@ -27,7 +27,7 @@ export default function Nav() {
 
   return (
     <>
-      <div className="mx-auto px-2 bg-gradient-to-r from-gray-700 via-gray-900 to-black w-full">
+      <div className="py-2 px-2 bg-gradient-to-r from-gray-700 via-gray-900 to-black w-full">
         <div className="flex h-max items-center justify-between">
           <div
             onClick={() => setOpen(!open)}
@@ -51,7 +51,7 @@ export default function Nav() {
               {navigation.map((item) => (
                 <li
                   key={item.name}
-                  className="sm:text-white md:px-24 cursor-pointer"
+                  className="sm:text-white sm:px-12"
                   //   className={classNames(
                   //     item.current
                   //       ? "bg-gray-900 text-white"
@@ -60,16 +60,18 @@ export default function Nav() {
                   //   )}
                   // aria-current={item.current ? "page" : undefined}
                 >
-                  <Link to={item.href}>{item.name}</Link>
+                  <Link to={item.href} className="cursor-pointer">
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="flex justify-center">
-            <div className=" mr-6 block">
+            <div className="ml-5 mr-5 block">
               <div className="flex space-x-4">
                 <button className="text-white" onClick={logout}>
-                  Log-out
+                  Logout
                 </button>
               </div>
             </div>
