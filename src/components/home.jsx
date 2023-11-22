@@ -1,22 +1,34 @@
+import Auth from "./axios";
+
 export default function home() {
+  const fetchData = async () => {
+    const response = Auth.get("userdetails/");
+    console.log(response);
+  };
+
+  fetchData();
   return (
     <>
-      <div className="p-2 mx-auto">
-        <div className=" mx-auto">
-          <div className="h-80 grid content-center">
-            <div className="flex flex-col justify-center items-center">
-              <div className="w-4/6 sm:w-2/6 bg-white">
-                <p className="text-3xl text-center sm:text-5xl cursor-default">
-                  Organize your work and life, finally.
-                </p>
-              </div>
-              {/* <div className="w-2/6 bg-white"> */}
-              <p className="text-base sm:text-2xl text-center h-16 flex items-center cursor-default">
-                Organize your work and life, finally.
-              </p>
-              {/* </div> */}
-            </div>
+      <div className=" mx-auto">
+        <div className="w-full bg-[url('public/venuebookingz-home-banner.jpg')] h-96 bg-cover">
+          <div className="w-full h-full flex  justify-center items-center">
+            <span className="text-white text-4xl w-11/12 sm:w-1/2 text-center">
+              Find Best Venue For Every Special Event
+            </span>
           </div>
+        </div>
+        <div className=" h-max flex flex-col justify-center items-center mt-14">
+          <span className="w-4/5 text-2xl text-center sm:text-4xl flex justify-center font-thin">
+            Book Your Dream Venue at Our Guaranteed Best Prices
+          </span>
+          <span className="w-11/12 sm:w-2/3 mt-10 text-center sm:text-lg text-sm font-light">
+            Looking venue for your Special Event? Venuebookingz® is one stop
+            point to find a perfect venue to celebrate Birthday Party,
+            Engagement, Wedding, Anniversary, Bachelor Party, Get-Together,
+            Sangeet & Mehandi Function, Cocktail Parties. Venuebookingz
+            recommend you personally curated list of venue options by experts
+            specially for your requirements.
+          </span>
         </div>
       </div>
     </>

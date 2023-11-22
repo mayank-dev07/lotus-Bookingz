@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AlignJustify } from "lucide-react";
-import Auth from "./axios";
 import { Link } from "react-router-dom";
 
 const navigation = [
@@ -17,13 +16,6 @@ export default function Nav() {
   function logout() {
     navigate("/");
   }
-
-  const fetchData = async () => {
-    const response = Auth.get("userdetails/");
-    console.log(response);
-  };
-
-  fetchData();
 
   return (
     <>
@@ -41,25 +33,15 @@ export default function Nav() {
               Lotus Bookingz
             </span>
           </div>
-          <div className="flex ">
+          <div className="flex w-full justify-evenly">
             <ul
-              className={`absolute md:static left-0 w-full  ${
+              className={`absolute sm:static left-0 w-full flex justify-evenly  ${
                 open
                   ? "top-12 flex self-center  flex justify-between p-4"
                   : "hidden sm:flex"
               }`}>
               {navigation.map((item) => (
-                <li
-                  key={item.name}
-                  className="sm:text-white sm:px-12"
-                  //   className={classNames(
-                  //     item.current
-                  //       ? "bg-gray-900 text-white"
-                  //       : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  //     "rounded-md px-3 py-2 text-sm font-medium"
-                  //   )}
-                  // aria-current={item.current ? "page" : undefined}
-                >
+                <li key={item.name} className="sm:text-white flex flex-wrap">
                   <Link to={item.href} className="cursor-pointer">
                     {item.name}
                   </Link>

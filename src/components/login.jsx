@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function login() {
   const navigate = useNavigate();
@@ -14,6 +16,10 @@ export default function login() {
       ...credentials,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const notify = (message) => {
+    toast.error(message);
   };
 
   const Submit = async (e) => {
@@ -48,7 +54,7 @@ export default function login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.81.68:8000/hall/api/token/",
+        "http://10.21.80.5:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);
@@ -59,7 +65,10 @@ export default function login() {
       navigate("/home");
       e.reset();
     } catch (error) {
-      console.log(error);
+      console.log(error.response.status);
+      if (error.response.status === 401) {
+        notify("Invalid user");
+      }
     }
   };
 
@@ -81,7 +90,6 @@ export default function login() {
                     <label
                       htmlFor="email"
                       className="block text-sm text-red-200 font-medium leading-6 ">
-                      {/* Email address */}
                       Username
                     </label>
                     <div className="mt-2">
@@ -130,6 +138,7 @@ export default function login() {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

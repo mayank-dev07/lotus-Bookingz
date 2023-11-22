@@ -2,7 +2,7 @@ import "./App.css";
 import Nav from "./components/nav";
 import Home from "./components/home";
 import Login from "./components/login";
-import Hall from "./components/hallbooking";
+import Hall from "./components/createHall";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
                 <Home />
               </>
             }
-          />{" "}
+          />
           <Route
             path="/hall"
             element={

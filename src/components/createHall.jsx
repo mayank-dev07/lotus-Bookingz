@@ -1,8 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
 import Auth from "./axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HallCreate() {
+  const fetchData = async () => {
+    const response = Auth.get("userdetails/");
+    console.log(response);
+  };
+  fetchData();
+
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -10,31 +18,50 @@ export default function HallCreate() {
     setFiles((prevFiles) => [...prevFiles, selectedFile]);
   };
 
+  const notify = (message) => {
+    if (message === "Hall created Successfully !") {
+      toast.success(message);
+    } else {
+      toast.error(message);
+    }
+  };
+
   function AddConference(e) {
     e.preventDefault();
     let formData = new FormData();
     formData.append("name", e.target.name.value);
     formData.append("description", e.target.description.value);
-    formData.append("occupancy", e.target.occupacy.value);
+    formData.append("occupancy", e.target.occupancy.value);
     formData.append("continous_booking_days_limit", e.target.contBooking.value);
-    formData.append("image", files);
+    console.log(files);
+    for (let i = 0; i < files.length; i++) {
+      console.log(files[i]);
+      formData.append("image", files[i]);
+    }
     console.log(formData);
-    useEffect(() => {
-      const createHall = async () => {
-        try {
-          const response = await Auth.post("create_hall/", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-          setUser(response.data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
 
-      createHall();
-    }, []);
+    const createHall = async () => {
+      try {
+        const response = await Auth.post("create_hall/", formData, {
+          headers: {
+            "Content-Type": "undefined",
+          },
+        });
+        console.log(response.data);
+        e.target.reset();
+        setFiles([]);
+        notify("Hall created Successfully !");
+      } catch (error) {
+        console.log(error);
+        if (error.response.status === 400) {
+          notify("Can't send empty field");
+        }
+      }
+    };
+
+    createHall();
+    // useEffect(() => {
+    // }, []);
   }
   const Remove = (index) => {
     setFiles((prevFile) => {
@@ -42,19 +69,22 @@ export default function HallCreate() {
     });
   };
 
+  function Cancel() {}
+
   return (
     <>
-      <div className="flex w-full justify-center p-4  md:p-14">
+      <div className="flex w-full justify-center p-8  md:p-12">
         <form className=" w-full sm:w-1/2" onSubmit={AddConference}>
-          <div className="border-b pb-12">
+          <div className="border-b border-gray-300 pb-5">
             <div className="">
               <div className="pb-5">
                 <label htmlFor="name" className="text-sm sm:text-base">
                   Name of the Hall
                 </label>
                 <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-gray-300 sm:max-w-md">
+                  <div className="flex rounded-md shadow-sm border-2 border-gray-300 sm:max-w-md">
                     <input
+                      required
                       type="text"
                       name="name"
                       id="name"
@@ -72,10 +102,12 @@ export default function HallCreate() {
                 </label>
                 <div className="mt-2">
                   <textarea
+                    required
                     id="description"
                     name="description"
                     rows={3}
-                    className="w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                    placeholder="Description about the conference hall"
+                    className="w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400"
                   />
                 </div>
                 <p className="mt-3 text-sm text-gray-600">
@@ -83,14 +115,13 @@ export default function HallCreate() {
                 </p>
               </div>
 
-              {/* className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"> */}
               <div className="col-span-full">
                 <label
                   htmlFor="cover-photo"
                   className="flex text-sm sm:text-base">
                   Cover photo
                 </label>
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10">
                   <div className="text-center">
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                       <label htmlFor="file-upload">
@@ -98,22 +129,25 @@ export default function HallCreate() {
                           Choose Images for the Hall
                         </span>
                         <input
+                          required
                           type="file"
                           id="file-upload"
                           className="sr-only"
+                          accept="image/jpeg, image/png"
                           multiple
                           onChange={handleFileChange}
                         />
                       </label>
                     </div>
+                    <p className="text-xs leading-5 text-gray-600">
+                      PNG, JPG, GIF up to 10MB
+                    </p>
                   </div>
                 </div>
               </div>
-              <ul className="flex mt-2  ">
+              <ul className="flex flex-wrap mt-2  ">
                 {files.map((file, index) => (
-                  <li
-                    key={file.name}
-                    className="flex flex-wrap px-5 border mr-2 ">
+                  <li key={file.name} className="flex px-5 border mr-2 mb-4">
                     {file.name}
                     <X
                       className="ml-2 px-1 cursor-pointer"
@@ -125,32 +159,40 @@ export default function HallCreate() {
             </div>
           </div>
 
-          <div className="border-b border-gray-900/10 pb-12">
-            <div className="mt-10 flex justify-evenly w-full">
-              <div className="w-2/5">
-                <label htmlFor="occupacy" className="text-sm sm:text-base">
-                  Occupacy
+          <div className="border-b border-gray-300 pb-12 flex items-center">
+            <div className="mt-10 flex flex-col sm:flex-row justify-evenly w-full">
+              <div className=" w-full sm:w-2/5">
+                <label htmlFor="occupancy" className="text-sm sm:text-base">
+                  Occupancy
                 </label>
                 <div className="mt-2">
                   <input
+                    required
                     type="number"
-                    name="occupacy"
-                    id="occupacy"
-                    className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-gray-300"
+                    name="occupancy"
+                    id="occupancy"
+                    min={10}
+                    max={10000}
+                    placeholder=""
+                    className="flex w-fit sm:w-full rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-300"
                   />
                 </div>
               </div>
 
-              <div className="w-2/5">
+              <div className=" w-full sm:w-2/5 mt-4 sm:mt-0">
                 <label htmlFor="contBooking" className="text-sm sm:text-base">
                   Continous Booking
                 </label>
                 <div className="mt-2">
                   <input
+                    required
                     type="number"
                     name="contBooking"
                     id="contBooking"
-                    className="block w-full rounded-md border-0 p-2  text-gray-900 shadow-sm ring-1 ring-gray-300"
+                    min={1}
+                    max={10}
+                    placeholder=""
+                    className="flex w-fit sm:w-full rounded-md border-0 p-2  text-gray-900 shadow-sm border-2 border-gray-300"
                   />
                 </div>
               </div>
@@ -158,19 +200,21 @@ export default function HallCreate() {
             </div>
           </div>
 
-          <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button
+          <div className="mt-6 flex items-center justify-center gap-x-6 sm:gap-x-24">
+            {/* <button
               type="button"
-              className="text-sm font-semibold leading-6 text-gray-900">
+              onClick={Cancel}
+              className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
               Cancel
-            </button>
+            </button> */}
             <button
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Save
+              className="rounded-md bg-indigo-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Add Hall
             </button>
           </div>
         </form>
+        <ToastContainer />
       </div>
     </>
   );
