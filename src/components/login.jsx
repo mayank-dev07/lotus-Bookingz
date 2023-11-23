@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function login() {
+export default function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: "",
@@ -54,7 +54,7 @@ export default function login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.81.215:8000/hall/api/token/",
+        "https://a977-125-21-249-98.ngrok-free.app/hall/api/token/",
         credentials
       );
       console.log(response.data);

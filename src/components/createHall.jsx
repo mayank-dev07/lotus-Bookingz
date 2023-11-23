@@ -1,15 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import Auth from "./axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function HallCreate() {
-  function fetchData() {
+  useEffect(() => {
     const response = Auth.get("userdetails/");
     console.log(response);
-  }
-  fetchData();
+  }, []);
 
   const [files, setFiles] = useState([]);
 
@@ -26,7 +25,7 @@ export default function HallCreate() {
     }
   };
 
-  function AddConference(e) {
+  function addConference(e) {
     e.preventDefault();
     let formData = new FormData();
 
@@ -48,16 +47,18 @@ export default function HallCreate() {
           "Content-Type": "undefined",
         },
       });
-      console.log(response.data);
-      e.target.reset();
-      setFiles([]);
-      notify("Hall created Successfully !");
+      console.log(response);
+      if (response.data.status == 200) {
+        notify("Hall created Successfully !");
+        // e.target.reset();
+        // setFiles([]);
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
-  const Remove = (index) => {
+  const remove = (index) => {
     setFiles((prevFile) => {
       return prevFile.splice(index, 1);
     });
@@ -66,7 +67,7 @@ export default function HallCreate() {
   return (
     <>
       <div className="flex w-full justify-center p-8  md:p-12">
-        <form className=" w-full sm:w-1/2" onSubmit={AddConference}>
+        <form className=" w-full sm:w-1/2" onSubmit={addConference}>
           <div className="border-b border-gray-300 pb-5">
             <div className="">
               <div className="pb-5">
@@ -143,7 +144,7 @@ export default function HallCreate() {
                     {file.name}
                     <X
                       className="ml-2 px-1 cursor-pointer"
-                      onClick={() => Remove(index)}
+                      onClick={() => remove(index)}
                     />
                   </li>
                 ))}

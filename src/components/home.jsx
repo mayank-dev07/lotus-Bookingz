@@ -1,12 +1,12 @@
 import Auth from "./axios";
+import { useEffect } from "react";
 
-export default function home() {
-  const fetchData = async () => {
+export default function Home() {
+  useEffect(() => {
     const response = Auth.get("userdetails/");
     console.log(response);
-  };
+  }, []);
 
-  fetchData();
   return (
     <>
       <div className=" mx-auto">
