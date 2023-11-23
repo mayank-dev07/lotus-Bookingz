@@ -5,10 +5,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function HallCreate() {
-  const fetchData = async () => {
+  function fetchData() {
     const response = Auth.get("userdetails/");
     console.log(response);
-  };
+  }
   fetchData();
 
   const [files, setFiles] = useState([]);
@@ -29,47 +29,39 @@ export default function HallCreate() {
   function AddConference(e) {
     e.preventDefault();
     let formData = new FormData();
+
     formData.append("name", e.target.name.value);
     formData.append("description", e.target.description.value);
     formData.append("occupancy", e.target.occupancy.value);
     formData.append("continous_booking_days_limit", e.target.contBooking.value);
-    console.log(files);
+
     for (let i = 0; i < files.length; i++) {
       console.log(files[i]);
       formData.append("image", files[i]);
     }
+
     console.log(formData);
 
-    const createHall = async () => {
-      try {
-        const response = await Auth.post("create_hall/", formData, {
-          headers: {
-            "Content-Type": "undefined",
-          },
-        });
-        console.log(response.data);
-        e.target.reset();
-        setFiles([]);
-        notify("Hall created Successfully !");
-      } catch (error) {
-        console.log(error);
-        if (error.response.status === 400) {
-          notify("Can't send empty field");
-        }
-      }
-    };
-
-    createHall();
-    // useEffect(() => {
-    // }, []);
+    try {
+      const response = Auth.post("create_hall/", formData, {
+        headers: {
+          "Content-Type": "undefined",
+        },
+      });
+      console.log(response.data);
+      e.target.reset();
+      setFiles([]);
+      notify("Hall created Successfully !");
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   const Remove = (index) => {
     setFiles((prevFile) => {
       return prevFile.splice(index, 1);
     });
   };
-
-  function Cancel() {}
 
   return (
     <>
@@ -129,7 +121,7 @@ export default function HallCreate() {
                           Choose Images for the Hall
                         </span>
                         <input
-                          required
+                          // requireds
                           type="file"
                           id="file-upload"
                           className="sr-only"
@@ -201,15 +193,9 @@ export default function HallCreate() {
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-x-6 sm:gap-x-24">
-            {/* <button
-              type="button"
-              onClick={Cancel}
-              className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
-              Cancel
-            </button> */}
             <button
               type="submit"
-              className="rounded-md bg-indigo-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              className="rounded-md bg-indigo-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
               Add Hall
             </button>
           </div>

@@ -3,6 +3,7 @@ import Nav from "./components/nav";
 import Home from "./components/home";
 import Login from "./components/login";
 import Hall from "./components/createHall";
+import Book from "./components/bookHall";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -33,6 +34,15 @@ function App() {
               <>
                 <Nav />
                 <Hall />
+              </>
+            }
+          />
+          <Route
+            path="/book"
+            element={
+              <>
+                <Nav />
+                <Book />
               </>
             }
           />

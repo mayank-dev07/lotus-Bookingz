@@ -54,7 +54,7 @@ export default function login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.80.5:8000/hall/api/token/",
+        "http://10.21.81.215:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);
@@ -63,11 +63,12 @@ export default function login() {
       localStorage.setItem("accesstoken", access);
       localStorage.setItem("refreshToken", refresh);
       navigate("/home");
-      e.reset();
+      e.target.reset();
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error);
       if (error.response.status === 401) {
         notify("Invalid user");
+      } else {
       }
     }
   };

@@ -7,7 +7,7 @@ const navigation = [
   { name: "Home", href: "/home", current: false },
   { name: "About", href: "#", current: false },
   { name: "Create Hall", href: "/hall", current: false },
-  { name: "Booking", href: "#", current: false },
+  { name: "Booking", href: "/book", current: false },
 ];
 export default function Nav() {
   let [open, setOpen] = useState(false);
