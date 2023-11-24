@@ -1,7 +1,8 @@
 import Nav from "./nav";
 import Home from "./home";
 import HallCreate from "./createHall";
-import Book from "./bookHall";
+import HallStatus from "./hallstatus";
+import BookForm from "./bookform";
 import { Routes, Route } from "react-router-dom";
 
 function Routing() {
@@ -11,7 +12,8 @@ function Routing() {
       <Routes>
         <Route path="/home" exact element={<Home />} />
         <Route path="/hall" exact element={<HallCreate />} />
-        <Route path="/book" exact element={<Book />} />
+        <Route path="/status" exact element={<HallStatus />} />
+        <Route path="/book" exact element={<BookForm />} />
       </Routes>
     </>
   );

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "/home", current: false },
-  { name: "About", href: "#", current: false },
+  { name: "Status", href: "/status", current: false },
   { name: "Create Hall", href: "/hall", current: false },
   { name: "Booking", href: "/book", current: false },
 ];
@@ -35,13 +35,15 @@ export default function Nav() {
           </div>
           <div className="flex w-full justify-evenly">
             <ul
-              className={`absolute sm:static left-0 w-full flex justify-evenly  ${
+              className={` flex-col sm:flex-row justify-evenly pb-2 absolute md:static md:z-auto z-50 left-0 w-full ${
                 open
-                  ? "top-12 flex self-center  flex justify-between p-4"
+                  ? "top-12 block justify-between p-4 bg-gradient-to-r from-gray-700 via-gray-900 to-black"
                   : "hidden sm:flex"
               }`}>
               {navigation.map((item) => (
-                <li key={item.name} className="sm:text-white flex flex-wrap">
+                <li
+                  key={item.name}
+                  className="text-white flex-wrap pb-4 sm:pb-0">
                   <Link to={item.href} className="cursor-pointer">
                     {item.name}
                   </Link>

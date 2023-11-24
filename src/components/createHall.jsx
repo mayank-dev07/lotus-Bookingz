@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
-import Auth from "./axios";
+import instance from "./axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function HallCreate() {
-  useEffect(() => {
-    const response = Auth.get("userdetails/");
-    console.log(response);
-  }, []);
-
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -42,17 +37,26 @@ export default function HallCreate() {
     console.log(formData);
 
     try {
-      const response = Auth.post("create_hall/", formData, {
+      const response = instance.post("create_hall/", formData, {
         headers: {
           "Content-Type": "undefined",
         },
       });
-      console.log(response);
-      if (response.data.status == 200) {
-        notify("Hall created Successfully !");
-        // e.target.reset();
-        // setFiles([]);
-      }
+      response
+        .then((value) => {
+          console.log(value);
+          if (value.status === 200) {
+            notify("Hall created Successfully !");
+            e.target.reset();
+            setFiles([]);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error.response.status === 400) {
+            notify("Enter valid data");
+          }
+        });
     } catch (error) {
       console.log(error);
     }
@@ -122,7 +126,7 @@ export default function HallCreate() {
                           Choose Images for the Hall
                         </span>
                         <input
-                          // requireds
+                          required
                           type="file"
                           id="file-upload"
                           className="sr-only"

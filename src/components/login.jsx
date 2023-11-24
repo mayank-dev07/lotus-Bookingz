@@ -54,7 +54,7 @@ export default function Login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "https://a977-125-21-249-98.ngrok-free.app/hall/api/token/",
+        "https://4c87-125-21-249-98.ngrok-free.app/hall/api/token/",
         credentials
       );
       console.log(response.data);
@@ -90,7 +90,7 @@ export default function Login() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm text-red-200 font-medium leading-6 ">
+                      className="block text-sm text-red-200 font-medium ">
                       Username
                     </label>
                     <div className="mt-2">
@@ -110,7 +110,7 @@ export default function Login() {
                     <div className="flex items-center justify-between">
                       <label
                         htmlFor="Password"
-                        className="block text-sm text-red-200 font-medium leading-6 ">
+                        className="block text-sm text-red-200 font-medium ">
                         Password
                       </label>
                     </div>
