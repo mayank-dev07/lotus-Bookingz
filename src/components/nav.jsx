@@ -13,6 +13,7 @@ export default function Nav() {
     { name: "Status", href: "/status", current: false },
     { name: "Create Hall", href: "/hall", current: false },
     { name: "Booking", href: "/book", current: false },
+    { name: "Hod Status", href: "/hodstatus", current: false },
   ]);
 
   useEffect(() => {
@@ -20,18 +21,18 @@ export default function Nav() {
     console.log(response);
   }, []);
 
-  // useEffect(() => {
-  //   const response = instance.get("nav/");
-  //   console.log(response);
-  //   response
-  //     .then(function (value) {
-  //       console.log(value.data);
-  //       setnavigation(value.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const response = instance.get("navbar/");
+    console.log(response);
+    response
+      .then(function (value) {
+        console.log(value.data);
+        setnavigation(value.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   function logout() {
     navigate("/");

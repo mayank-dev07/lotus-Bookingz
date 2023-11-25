@@ -85,12 +85,12 @@ export default function HallStatus() {
                   </div>
                 </div>
                 <div className="flex w-full justify-center self-center">
-                  <button
+                  {/* <button
                     type="button"
                     className="rounded-full p-2 text-white w-max
                     bg-indigo-800">
                     Status
-                  </button>
+                  </button> */}
                 </div>
               </div>
             ))}
