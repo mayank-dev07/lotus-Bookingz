@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://4c87-125-21-249-98.ngrok-free.app/hall/",
+  baseURL: "http://10.21.87.222:8000/hall/",
 });
 
 instance.interceptors.request.use(
@@ -28,7 +28,7 @@ instance.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("refreshToken");
         const response = await axios.post(
-          "https://4c87-125-21-249-98.ngrok-free.app/hall/api/token/refresh/",
+          "http://10.21.87.222:8000/hall/api/token/refresh/",
           {
             refresh: refreshToken,
             headers: {
@@ -45,7 +45,8 @@ instance.interceptors.response.use(
         console.log(error);
         console.log(error.response.status);
         if (error.response.status === 401) {
-          // window.location.href = "/";
+          window.location.href = "/";
+
           // Back();
         }
       }

@@ -1,17 +1,37 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AlignJustify } from "lucide-react";
 import { Link } from "react-router-dom";
+import instance from "./axios";
 
-const navigation = [
-  { name: "Home", href: "/home", current: false },
-  { name: "Status", href: "/status", current: false },
-  { name: "Create Hall", href: "/hall", current: false },
-  { name: "Booking", href: "/book", current: false },
-];
 export default function Nav() {
-  let [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const [open, setOpen] = useState(false);
+  const [navigation, setnavigation] = useState([
+    { name: "Home", href: "/home", current: false },
+    { name: "Status", href: "/status", current: false },
+    { name: "Create Hall", href: "/hall", current: false },
+    { name: "Booking", href: "/book", current: false },
+  ]);
+
+  useEffect(() => {
+    const response = instance.get("userdetails/");
+    console.log(response);
+  }, []);
+
+  // useEffect(() => {
+  //   const response = instance.get("nav/");
+  //   console.log(response);
+  //   response
+  //     .then(function (value) {
+  //       console.log(value.data);
+  //       setnavigation(value.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   function logout() {
     navigate("/");

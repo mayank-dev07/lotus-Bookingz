@@ -2,7 +2,7 @@ import Auth from "./axios";
 import { useState, useEffect } from "react";
 import instance from "./axios";
 
-export default function HallStatus() {
+export default function HodStatus() {
   const [people, setpeople] = useState([]);
   useEffect(() => {
     const response = instance.get("bookhall/");

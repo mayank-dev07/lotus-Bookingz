@@ -54,7 +54,7 @@ export default function Login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "https://4c87-125-21-249-98.ngrok-free.app/hall/api/token/",
+        "http://10.21.87.222:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);
