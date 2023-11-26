@@ -37,7 +37,7 @@ export default function HallCreate() {
 
     for (let i = 0; i < files.length; i++) {
       console.log(files[i]);
-      formData.append("image", files[i]);
+      formData.append("upload_image", files[i]);
     }
 
     console.log(formData);

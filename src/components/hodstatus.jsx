@@ -95,7 +95,7 @@ export default function HodStatus() {
           </thead>
           <tbody>
             {people.map((person, index) => (
-              <tr className=" border-b bg-gray-800 border-gray-700">
+              <tr className=" border-b bg-gray-800 border-gray-700" key={index}>
                 <td className="px-6 py-4">{index + 1}</td>
                 <td className="px-6 py-4">{person.booked_hall.hall_data}</td>
                 <td className="px-6 py-4">
@@ -114,7 +114,7 @@ export default function HodStatus() {
                   <input
                     type="text"
                     name="remark"
-                    id="remark"
+                    // id={person.id}
                     onChange={(e) => setRemark(e.target.value)}
                     className=" flex-1  bg-gray-600 p-2 "
                     placeholder="Remark"

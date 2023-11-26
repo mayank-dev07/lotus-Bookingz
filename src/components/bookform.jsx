@@ -54,11 +54,14 @@ export default function BookForm() {
     e.preventDefault();
     console.log(hallData);
     try {
-      const response = instance.post("bookhall/", hallData, {});
+      const response = instance.post("bookhall/", hallData);
       response
         .then((value) => {
           console.log(value);
           notify("Hall booked successfully !");
+          hallData.hall = "";
+          e.target.reset();
+          hallData.purpose = "";
           sethallData.hall = "";
           sethallData.purpose = "";
           sethallData.employee_remark = "";
@@ -127,7 +130,7 @@ export default function BookForm() {
                       <input
                         onChange={handleChange}
                         required
-                        value={hallData.purpose}
+                        // value={hallData.purpose}
                         id="purpose"
                         name="purpose"
                         placeholder="Purpose to book hall"
@@ -144,7 +147,7 @@ export default function BookForm() {
                     <div className="mt-2">
                       <input
                         onChange={handleChange}
-                        value={hallData.participant_count}
+                        // value={hallData.participant_count}
                         required
                         type="number"
                         id="participant_count"
@@ -166,7 +169,7 @@ export default function BookForm() {
                   <div className="mt-1">
                     <textarea
                       onChange={handleChange}
-                      value={hallData.employee_remark}
+                      // value={hallData.employee_remark}
                       required
                       id="employee_remark"
                       name="employee_remark"
@@ -190,7 +193,7 @@ export default function BookForm() {
                   <div className="mt-2 ">
                     <input
                       onChange={handleChange}
-                      value={hallData.from_date}
+                      // value={hallData.from_date}
                       min={new Date().toISOString().split("T")[0]}
                       required
                       type="date"
@@ -210,7 +213,7 @@ export default function BookForm() {
                   <div className="mt-2">
                     <input
                       onChange={handleChange}
-                      value={hallData.to_date}
+                      // value={hallData.to_date}
                       min={
                         new Date(new Date().setDate(new Date().getDate() + 1))
                           .toISOString()
@@ -236,7 +239,7 @@ export default function BookForm() {
                   <div className="mt-2">
                     <input
                       onChange={handleChange}
-                      value={hallData.from_time}
+                      // value={hallData.from_time}
                       required
                       type="time"
                       name="from_time"
@@ -255,7 +258,7 @@ export default function BookForm() {
                   <div className="mt-2">
                     <input
                       onChange={handleChange}
-                      value={hallData.to_time}
+                      // value={hallData.to_time}
                       required
                       type="time"
                       name="to_time"
