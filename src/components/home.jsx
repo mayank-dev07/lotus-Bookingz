@@ -1,12 +1,4 @@
-import instance from "./axios";
-import { useEffect } from "react";
-
 export default function Home() {
-  // useEffect(() => {
-  //   const response = instance.get("userdetails/");
-  //   console.log(response);
-  // }, []);
-
   return (
     <>
       <div className=" mx-auto">

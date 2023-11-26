@@ -7,6 +7,8 @@ export default function HodStatus() {
   const [people, setpeople] = useState([]);
   const [Remark, setRemark] = useState("");
   const [Approved, setApproved] = useState();
+  const [appid, setappid] = useState("");
+
   let id = useRef();
   let Status = useRef();
 
@@ -53,8 +55,12 @@ export default function HodStatus() {
   const approve = (event) => {
     id = event.currentTarget.id;
     console.log(id);
+    console.log(Remark);
+    console.log(appid);
     Status = 1;
-    if (Remark) {
+    if (Remark && appid === id) {
+      console.log("yes");
+      setRemark("");
       result();
     } else {
       notify("To Approve Enter Remark");
@@ -65,11 +71,19 @@ export default function HodStatus() {
     id = event.currentTarget.id;
     console.log(id);
     Status = 2;
-    if (Remark) {
+    if (Remark && appid == id) {
+      console.log("yes");
       result();
     } else {
       notify("To Reject Enter Remark");
     }
+  };
+
+  const app = (e) => {
+    setappid(e.currentTarget.id);
+    setRemark(e.target.value);
+    console.log(appid);
+    console.log(Remark);
   };
 
   return (
@@ -114,10 +128,11 @@ export default function HodStatus() {
                   <input
                     type="text"
                     name="remark"
-                    // id={person.id}
-                    onChange={(e) => setRemark(e.target.value)}
+                    id={person.id}
+                    onChange={app}
                     className=" flex-1  bg-gray-600 p-2 "
                     placeholder="Remark"
+                    onBlur={(e) => (e.target.value = "")}
                   />
                 </td>
 

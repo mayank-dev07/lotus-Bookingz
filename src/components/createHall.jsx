@@ -88,9 +88,9 @@ export default function HallCreate() {
           </div>
         </div>
 
-        <div className="flex w-3/5 justify-center p-8  md:p-10 bg-white">
+        <div className="flex w-3/5 justify-center p-8  md:p-10 bg-gray-100">
           <form className=" w-full " onSubmit={addConference}>
-            <div className="border-b border-gray-300 pb-5">
+            <div className="border-b border-gray-500 pb-5">
               <div className="">
                 <div className="pb-5">
                   <label
@@ -108,7 +108,7 @@ export default function HallCreate() {
                         name="name"
                         id="name"
                         autoComplete="name"
-                        className=" flex-1  bg-transparent p-2 "
+                        className="flex-1 bg-gray-50 p-2 "
                         placeholder="Hall name"
                       />
                     </div>
@@ -128,7 +128,7 @@ export default function HallCreate() {
                       name="description"
                       rows={3}
                       placeholder="Description about the conference hall"
-                      className="w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400"
+                      className="w-full bg-gray-50 rounded-md border-2 p-2 text-gray-900 shadow-sm border-gray-300"
                     />
                   </div>
                   <span className="mt-3 text-sm text-gray-600">
@@ -142,9 +142,9 @@ export default function HallCreate() {
                     className="flex text-sm sm:text-lg sm:font-medium">
                     Cover photo
                   </label>
-                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10">
+                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-300 px-6 py-10 bg-gray-50">
                     <div className="text-center">
-                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <div className="mt-4 flex text-sm  text-gray-600">
                         <label htmlFor="file-upload">
                           <span className="text-indigo-600 underline underline-offset-4 font-base cursor-pointer">
                             Choose Images for the Hall
@@ -180,7 +180,7 @@ export default function HallCreate() {
               </div>
             </div>
 
-            <div className="border-b border-gray-300 pb-8 flex items-center">
+            <div className="border-b border-gray-500 pb-8 flex items-center">
               <div className="mt-10 flex flex-col sm:flex-row justify-evenly w-full">
                 <div className=" w-full sm:w-2/5">
                   <label
@@ -196,8 +196,8 @@ export default function HallCreate() {
                       id="occupancy"
                       min={10}
                       max={10000}
-                      placeholder=""
-                      className="flex w-fit sm:w-full rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-300"
+                      placeholder="occupancy"
+                      className="flex w-fit sm:w-full bg-gray-50 rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-300"
                     />
                   </div>
                 </div>
@@ -216,8 +216,8 @@ export default function HallCreate() {
                       id="contBooking"
                       min={1}
                       max={10}
-                      placeholder=""
-                      className="flex w-fit sm:w-full rounded-md border-0 p-2  text-gray-900 shadow-sm border-2 border-gray-300"
+                      placeholder="Continous booking"
+                      className="flex w-fit sm:w-full bg-gray-50 rounded-md border-0 p-2  text-gray-900 shadow-sm border-2 border-gray-300"
                     />
                   </div>
                 </div>

@@ -9,6 +9,7 @@ export default function AdminStatus() {
   const [Approved, setApproved] = useState();
   const [Options, setOptions] = useState([]);
   const [Alloted, setAlloted] = useState();
+  const [appid, setappid] = useState("");
 
   let id = useRef();
   let Status = useRef();
@@ -48,17 +49,16 @@ export default function AdminStatus() {
   };
 
   function result() {
-    const response = instance.post("aostatus/", {
+    const response = instance.put(`aostatus/${id}/`, {
       status: Status,
       remark: Remark,
-      hall: id,
       alloted: Alloted,
     });
     console.log(response);
     response
       .then(function (value) {
         console.log(value.status);
-        if (value.status === 201) {
+        if (value.status === 200) {
           setApproved(value.data);
           notify("Status Approved");
         }
@@ -73,8 +73,10 @@ export default function AdminStatus() {
     console.log(id);
     Status = 1;
     console.log(Alloted);
-    if (Remark && Alloted) {
-      result();
+    if (Remark && appid === id && Alloted) {
+      //   result();
+      setAlloted("");
+      console.log("yes");
     } else {
       notify("To Approve Enter Details");
     }
@@ -84,11 +86,19 @@ export default function AdminStatus() {
     id = event.currentTarget.id;
     console.log(id);
     Status = 2;
-    if (Remark) {
-      result();
+    if (Remark && appid === id) {
+      //   result();
+      console.log("yes");
     } else {
       notify("To Reject Enter Status");
     }
+  };
+
+  const app = (e) => {
+    setappid(e.currentTarget.id);
+    setRemark(e.target.value);
+    console.log(appid);
+    console.log(Remark);
   };
 
   return (
@@ -151,11 +161,11 @@ export default function AdminStatus() {
                     <input
                       type="text"
                       name="remark"
-                      id="remark"
-                      onChange={(e) => setRemark(e.target.value)}
+                      id={person.id}
+                      onChange={app}
                       className=" flex-1  bg-gray-600 p-2 "
                       placeholder="Remark"
-                      //   onBlur={(e) => setRemark(e.target.value = "")}
+                      onBlur={(e) => (e.target.value = "")}
                     />
                   }
                 </td>
@@ -166,7 +176,7 @@ export default function AdminStatus() {
                       type="button"
                       className="rounded-full p-2 px-3 text-white w-max
                     bg-indigo-800"
-                      id={person.hall}
+                      id={person.id}
                       onClick={(event) => approve(event)}>
                       Approve
                     </button>
@@ -178,7 +188,7 @@ export default function AdminStatus() {
                       type="button"
                       className="rounded-full px-3 p-2 text-white w-max
                     bg-red-800"
-                      id={person.hall}
+                      id={person.id}
                       onClick={(event) => reject(event)}>
                       Reject
                     </button>
