@@ -4,6 +4,7 @@ import HallCreate from "./createHall";
 import HallStatus from "./hallstatus";
 import BookForm from "./bookform";
 import HodStatus from "./hodstatus";
+import AdminStatus from "./adminstatus";
 import { Routes, Route } from "react-router-dom";
 
 function Routing() {
@@ -16,6 +17,7 @@ function Routing() {
         <Route path="/status" exact element={<HallStatus />} />
         <Route path="/book" exact element={<BookForm />} />
         <Route path="/hodstatus" exact element={<HodStatus />} />
+        <Route path="/aostatus" exact element={<AdminStatus />} />
       </Routes>
     </>
   );
