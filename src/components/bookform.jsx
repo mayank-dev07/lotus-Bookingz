@@ -59,21 +59,11 @@ export default function BookForm() {
         .then((value) => {
           console.log(value);
           notify("Hall booked successfully !");
-          // hallData.hall = "";
-          // e.target.reset();
-          // hallData.purpose = "";
-          // sethallData.hall = "";
-          // sethallData.purpose = "";
-          // sethallData.employee_remark = "";
-          // sethallData.participant_count = "";
-          // sethallData.from_date = "";
-          // sethallData.to_date = "";
-          // sethallData.from_time = "";
-          // sethallData.to_time = "";
         })
         .catch((error) => {
           console.log(error.response.data[0]);
           notify(error.response.data[0]);
+          e.target.reset();
         });
     } catch (error) {
       console.log(error);
@@ -85,9 +75,6 @@ export default function BookForm() {
       <div className="w-full flex flex-col sm:flex-row justify-center sm:p-14 bg-[url('public/360_F_355588589_4MMBMTbudDotGpd3f2dwbWdJLDjsjsFd.jpg')] bg-cover ">
         <div className="sm:w-2/5 w-full backdrop-blur-md bg-gray-800/30 backdrop-opacity-10 shadow-lg">
           <div className="w-full h-full flex flex-col justify-center items-center">
-            {/* <span className="text-gray-400 text-lg sm:text-4xl w-11/12 sm:w-1/2 text-center p-8">
-              WELCOME
-            </span> */}
             <span className="text-gray-300 text-lg sm:text-4xl w-11/12 sm:w-4/5 text-center">
               Book The Best Venue For Special Event
             </span>
@@ -109,10 +96,15 @@ export default function BookForm() {
                       value={hallData.hall}
                       onChange={handleChange}
                       name="hall"
-                      className="w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm">
-                      <option value="">Choose Hall</option>
+                      className="w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm">
+                      <option value="" className="bg-gray-700">
+                        Choose Hall
+                      </option>
                       {Options.map((option) => (
-                        <option key={option.pk} value={option.pk}>
+                        <option
+                          key={option.pk}
+                          value={option.pk}
+                          className="bg-gray-700">
                           {option.name}
                         </option>
                       ))}
@@ -130,11 +122,10 @@ export default function BookForm() {
                       <input
                         onChange={handleChange}
                         required
-                        // value={hallData.purpose}
                         id="purpose"
                         name="purpose"
                         placeholder="Purpose to book hall"
-                        className="w-full rounded-md bg-red-200/20  p-2 text-gray-400 shadow-sm"
+                        className="w-full rounded-md bg-red-200/20  p-2 text-white shadow-sm"
                       />
                     </div>
                   </div>
@@ -147,14 +138,13 @@ export default function BookForm() {
                     <div className="mt-2">
                       <input
                         onChange={handleChange}
-                        // value={hallData.participant_count}
                         required
                         type="number"
                         id="participant_count"
                         name="participant_count"
                         min={1}
                         placeholder="No of participants"
-                        className="w-full rounded-md bg-red-200/20  p-2 text-gray-400 shadow-sm"
+                        className="w-full rounded-md bg-red-200/20  p-2 text-white shadow-sm"
                       />
                     </div>
                   </div>
@@ -175,7 +165,7 @@ export default function BookForm() {
                       name="employee_remark"
                       rows={3}
                       placeholder="Remark about the conference hall"
-                      className="w-full rounded-md bg-red-200/20  p-2 text-gray-400 shadow-sm"
+                      className="w-full rounded-md bg-red-200/20  p-2 text-white shadow-sm"
                     />
                   </div>
                 </div>
@@ -200,7 +190,7 @@ export default function BookForm() {
                       name="from_date"
                       id="from_date"
                       placeholder=""
-                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
@@ -224,7 +214,7 @@ export default function BookForm() {
                       name="to_date"
                       id="to_date"
                       placeholder=""
-                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
@@ -245,7 +235,7 @@ export default function BookForm() {
                       name="from_time"
                       id="from_time"
                       placeholder=""
-                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
@@ -264,7 +254,7 @@ export default function BookForm() {
                       name="to_time"
                       id="to_time"
                       placeholder=""
-                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>

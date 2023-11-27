@@ -108,7 +108,7 @@ export default function HallCreate() {
                         name="name"
                         id="name"
                         autoComplete="name"
-                        className="flex-1 bg-red-200/20 p-2 opacity-80"
+                        className="flex-1 bg-red-200/20 p-2 text-white opacity-80"
                         placeholder="Hall name"
                       />
                     </div>
@@ -128,7 +128,7 @@ export default function HallCreate() {
                       name="description"
                       rows={3}
                       placeholder="Description about the conference hall"
-                      className="w-full bg-red-200/20 opacity-80 rounded-md  p-2 text-gray-900 shadow-sm border-gray-300"
+                      className="w-full bg-red-200/20 opacity-80 rounded-md  p-2 text-white shadow-sm border-gray-300"
                     />
                   </div>
                   <span className="mt-3 text-sm text-gray-400 ">
@@ -168,7 +168,9 @@ export default function HallCreate() {
                 </div>
                 <ul className="flex flex-wrap mt-2">
                   {files.map((file, index) => (
-                    <li key={file.name} className="flex px-5 border mr-2 mb-4">
+                    <li
+                      key={file.name}
+                      className="flex px-5 border mr-2 mb-4 text-white">
                       {file.name}
                       <X
                         className="ml-2 px-1 cursor-pointer"
@@ -197,7 +199,7 @@ export default function HallCreate() {
                       min={10}
                       max={10000}
                       placeholder="occupancy"
-                      className="flex w-full m:w-full bg-red-200/20 opacity-80 rounded-md border-0 p-2 text-gray-900 shadow-sm  border-gray-300"
+                      className="flex w-full m:w-full bg-red-200/20 opacity-80 rounded-md border-0 p-2 text-white shadow-sm  border-gray-300"
                     />
                   </div>
                 </div>
@@ -217,7 +219,7 @@ export default function HallCreate() {
                       min={1}
                       max={10}
                       placeholder="Continous booking"
-                      className="flex w-full sm:w-full bg-red-200/20 opacity-80 rounded-md border-0 p-2  text-gray-900 shadow-sm  border-gray-300"
+                      className="flex w-full sm:w-full bg-red-200/20 opacity-80 rounded-md border-0 p-2  text-white shadow-sm  border-gray-300"
                     />
                   </div>
                 </div>

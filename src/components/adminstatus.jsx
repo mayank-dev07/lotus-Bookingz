@@ -74,7 +74,7 @@ export default function AdminStatus() {
     Status = 1;
     console.log(Alloted);
     if (Remark && appid === id && Alloted) {
-      //   result();
+      result();
       setAlloted("");
       console.log(Alloted);
       console.log("yes");
@@ -88,7 +88,7 @@ export default function AdminStatus() {
     console.log(id);
     Status = 2;
     if (Remark && appid === id) {
-      //   result();
+      result();
       console.log("yes");
     } else {
       notify("To Reject Enter Status");
@@ -106,7 +106,7 @@ export default function AdminStatus() {
     <>
       <ToastContainer />
 
-      <div className="relative overflow-x-auto shadow-md mt-7 h-screen">
+      <div className="relative overflow-x-auto shadow-md  h-screen">
         {/* {people.length > 0 ? ( */}
         <table className="w-full text-sm text-gray-400">
           <thead className="uppercase bg-gray-700">
