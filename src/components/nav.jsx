@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { AlignJustify } from "lucide-react";
 import { Link } from "react-router-dom";
 import instance from "./axios";
@@ -10,17 +10,16 @@ export default function Nav() {
 
   const [open, setOpen] = useState(false);
   const [navigation, setnavigation] = useState([
-    { name: "Home", href: "/home", current: false },
-    { name: "Status", href: "/status", current: false },
-    { name: "Create Hall", href: "/hall", current: false },
-    { name: "Booking", href: "/book", current: false },
-    { name: "Hod Status", href: "/hodstatus", current: false },
+    // { name: "Home", href: "/home", current: false },
+    // { name: "Status", href: "/status", current: false },
+    // { name: "Create Hall", href: "/hall", current: false },
+    // { name: "Booking", href: "/book", current: false },
+    // { name: "Hod Status", href: "/hodstatus", current: false },
   ]);
-
-  useEffect(() => {
-    const response = instance.get("userdetails/");
-    console.log(response);
-  }, []);
+  // useEffect(() => {
+  //   const response = instance.get("userdetails/");
+  //   console.log(response);
+  // }, []);
 
   useEffect(() => {
     const response = instance.get("navbar/");
@@ -31,13 +30,30 @@ export default function Nav() {
         setnavigation(value.data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.response.status);
+        if (error.response.status === 401) {
+          navigate("/");
+        }
       });
   }, []);
 
   function logout() {
-    axios.post("http://10.21.87.222:8000/hall/logout/");
-    // navigate("/");
+    const token = localStorage.getItem("refreshToken");
+    const response = instance.post("logout/", { refresh_token: token });
+    localStorage.setItem("accesstoken", "");
+    localStorage.setItem("refreshToken", "");
+    console.log(response);
+    response
+      .then(function (value) {
+        console.log(value.data);
+        setnavigation(value.data);
+      })
+      .catch(function (error) {
+        console.log(error.response.status);
+        if (error.response.status === 401) {
+          navigate("/");
+        }
+      });
   }
 
   return (

@@ -83,9 +83,9 @@ export default function BookForm() {
   return (
     <>
       <div className="w-full flex flex-col sm:flex-row justify-center sm:p-14 bg-[url('public/360_F_355588589_4MMBMTbudDotGpd3f2dwbWdJLDjsjsFd.jpg')] bg-cover ">
-        <div className="sm:w-2/5 w-full backdrop-blur-md bg-gray-500/30 backdrop-opacity-10 shadow-lg">
+        <div className="sm:w-2/5 w-full backdrop-blur-md bg-gray-800/30 backdrop-opacity-10 shadow-lg">
           <div className="w-full h-full flex flex-col justify-center items-center">
-            {/* <span className="text-white text-lg sm:text-4xl w-11/12 sm:w-1/2 text-center p-8">
+            {/* <span className="text-gray-400 text-lg sm:text-4xl w-11/12 sm:w-1/2 text-center p-8">
               WELCOME
             </span> */}
             <span className="text-gray-300 text-lg sm:text-4xl w-11/12 sm:w-4/5 text-center">
@@ -93,14 +93,14 @@ export default function BookForm() {
             </span>
           </div>
         </div>
-        <div className="w-full sm:w-3/5 sm:p-6 p-4 bg-gray-100 backdrop-opacity-10 shadow-lg">
+        <div className="w-full sm:w-3/5 sm:p-6 p-4 backdrop-blur-sm bg-red-300/20 backdrop-opacity-90">
           <form className=" w-full " onSubmit={book}>
             <div className="border-b border-gray-500 pb-5 md:px-4">
               <div className="">
                 <div className="w-full pb-5 mr-2">
                   <label
                     htmlFor="hall"
-                    className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                    className="text-sm sm:font-medium sm:text-lg text-white">
                     Hall name
                   </label>
                   <div className="mt-2">
@@ -109,7 +109,7 @@ export default function BookForm() {
                       value={hallData.hall}
                       onChange={handleChange}
                       name="hall"
-                      className="w-full bg-gray-50 rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400">
+                      className="w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm">
                       <option value="">Choose Hall</option>
                       {Options.map((option) => (
                         <option key={option.pk} value={option.pk}>
@@ -123,7 +123,7 @@ export default function BookForm() {
                   <div className="w-full sm:w-1/2 pb-5 mr-2">
                     <label
                       htmlFor="purpose"
-                      className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                      className="text-sm sm:font-medium sm:text-lg text-white">
                       Purpose
                     </label>
                     <div className="mt-2">
@@ -134,14 +134,14 @@ export default function BookForm() {
                         id="purpose"
                         name="purpose"
                         placeholder="Purpose to book hall"
-                        className="w-full rounded-md bg-gray-50 border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400"
+                        className="w-full rounded-md bg-red-200/20  p-2 text-gray-400 shadow-sm"
                       />
                     </div>
                   </div>
                   <div className="w-full sm:w-1/2 pb-5">
                     <label
                       htmlFor="participant_count"
-                      className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                      className="text-sm sm:font-medium sm:text-lg text-white">
                       Participant count
                     </label>
                     <div className="mt-2">
@@ -154,7 +154,7 @@ export default function BookForm() {
                         name="participant_count"
                         min={1}
                         placeholder="No of participants"
-                        className="w-full rounded-md bg-gray-50 border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400"
+                        className="w-full rounded-md bg-red-200/20  p-2 text-gray-400 shadow-sm"
                       />
                     </div>
                   </div>
@@ -163,7 +163,7 @@ export default function BookForm() {
                 <div className="w-full pb-5">
                   <label
                     htmlFor="employee_remark"
-                    className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                    className="text-sm sm:font-medium sm:text-lg text-white">
                     Remark
                   </label>
                   <div className="mt-1">
@@ -175,7 +175,7 @@ export default function BookForm() {
                       name="employee_remark"
                       rows={3}
                       placeholder="Remark about the conference hall"
-                      className="w-full rounded-md bg-gray-50 border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400"
+                      className="w-full rounded-md bg-red-200/20  p-2 text-gray-400 shadow-sm"
                     />
                   </div>
                 </div>
@@ -187,7 +187,7 @@ export default function BookForm() {
                 <div className=" w-full sm:w-2/5">
                   <label
                     htmlFor="from_date"
-                    className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                    className="text-sm sm:font-medium sm:text-lg text-white">
                     Date from
                   </label>
                   <div className="mt-2 ">
@@ -200,14 +200,14 @@ export default function BookForm() {
                       name="from_date"
                       id="from_date"
                       placeholder=""
-                      className="flex w-full bg-gray-50 rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
                 <div className=" w-full sm:w-2/5">
                   <label
                     htmlFor="to_date"
-                    className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                    className="text-sm sm:font-medium sm:text-lg text-white">
                     Date to
                   </label>
                   <div className="mt-2">
@@ -224,7 +224,7 @@ export default function BookForm() {
                       name="to_date"
                       id="to_date"
                       placeholder=""
-                      className="flex w-full bg-gray-50 rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export default function BookForm() {
                 <div className=" w-full sm:w-2/5">
                   <label
                     htmlFor="from_time"
-                    className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                    className="text-sm sm:font-medium sm:text-lg text-white">
                     Time from
                   </label>
                   <div className="mt-2">
@@ -245,14 +245,14 @@ export default function BookForm() {
                       name="from_time"
                       id="from_time"
                       placeholder=""
-                      className="flex w-full bg-gray-50 rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
                 <div className=" w-full sm:w-2/5">
                   <label
                     htmlFor="to_time"
-                    className="text-sm sm:font-medium sm:text-lg text-gray-900">
+                    className="text-sm sm:font-medium sm:text-lg text-white">
                     Time to
                   </label>
                   <div className="mt-2">
@@ -264,16 +264,17 @@ export default function BookForm() {
                       name="to_time"
                       id="to_time"
                       placeholder=""
-                      className="flex w-full bg-gray-50 rounded-md border-0 p-2 text-gray-900 shadow-sm border-2 border-gray-200"
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-gray-400 shadow-sm  border-gray-200"
                     />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-full flex justify-center p-4">
+            <div className="w-full flex justify-center p-4 mt-3">
               <button
                 className="bg-indigo-800 text-white p-2 rounded-lg"
-                type="submit">
+                type="submit"
+                style={{ backgroundColor: "#db2032" }}>
                 Book Hall
               </button>
             </div>

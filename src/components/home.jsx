@@ -1,4 +1,23 @@
+import { useEffect } from "react";
+import instance from "./axios";
+
 export default function Home() {
+  useEffect(() => {
+    const response = instance.get("list/");
+    console.log(response);
+    response
+      .then(function (value) {
+        console.log(value.data);
+        setnavigation(value.data);
+      })
+      .catch(function (error) {
+        console.log(error.response.status);
+        if (error.response.status === 401) {
+          navigate("/");
+        }
+      });
+  });
+
   return (
     <>
       <div className=" mx-auto">
@@ -9,7 +28,7 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div className=" h-max flex flex-col justify-center items-center mt-14">
+        <div className=" h-max flex flex-col justify-center items-center p-14 bg-white">
           <span className="w-4/5 text-2xl text-center sm:text-4xl flex justify-center font-thin">
             Book Your Dream Venue at Our Guaranteed Best Prices
           </span>

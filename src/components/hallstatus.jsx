@@ -68,7 +68,7 @@ export default function HallStatus() {
   return (
     <>
       <ToastContainer />
-      <div className="relative overflow-x-auto shadow-md">
+      <div className="relative overflow-x-auto shadow-md h-screen ">
         <table className="w-full text-sm text-gray-400">
           <thead className="uppercase bg-gray-700">
             <tr>
