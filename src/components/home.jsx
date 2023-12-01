@@ -4,21 +4,21 @@ import instance from "./axios";
 export default function Home() {
   const [Halls, setHalls] = useState([]);
 
-  useEffect(() => {
-    const response = instance.get("list/");
-    console.log(response);
-    response
-      .then(function (value) {
-        console.log(value.data);
-        setHalls(value.data);
-      })
-      .catch(function (error) {
-        console.log(error.response.status);
-        if (error.response.status === 401) {
-          navigate("/");
-        }
-      });
-  }, []);
+  // useEffect(() => {
+  //   const response = instance.get("list/");
+  //   console.log(response);
+  //   response
+  //     .then(function (value) {
+  //       console.log(value.data);
+  //       setHalls(value.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error.response.status);
+  //       if (error.response.status === 401) {
+  //         // navigate("/");
+  //       }
+  //     });
+  // }, []);
 
   return (
     <>

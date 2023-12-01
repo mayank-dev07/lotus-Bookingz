@@ -166,7 +166,7 @@ export default function AdminStatus() {
                       onChange={app}
                       className=" flex-1  bg-gray-600 p-2 "
                       placeholder="Remark"
-                      onBlur={(e) => (e.target.value = "")}
+                      //   onBlur={(e) => (e.target.value = "")}
                     />
                   }
                 </td>

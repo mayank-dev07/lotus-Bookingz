@@ -8,23 +8,15 @@ import instance from "./axios";
 export default function Login() {
   const navigate = useNavigate();
 
+  // const [Auth, setAuth] = useState();
   useEffect(() => {
-    const response = instance.get("userdetails/");
-    console.log(response);
-    response
-      .then(function (value) {
-        console.log(value.status);
-        if (value.status === 200) {
-          navigate("/home");
-        }
-      })
-      .catch(function (error) {
-        console.log(error.response.status);
-        if (error.response.status === 401) {
-          navigate("/");
-        }
-      });
-  }, []);
+    const Auth = localStorage.getItem("accesstoken");
+    if (Auth) {
+      navigate("/home");
+    } else {
+      // navigate("")
+    }
+  });
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -74,7 +66,7 @@ export default function Login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.83.196:8000/hall/api/token/",
+        "http://10.21.83.60:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);

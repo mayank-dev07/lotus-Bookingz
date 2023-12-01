@@ -16,10 +16,14 @@ export default function Nav() {
     // { name: "Booking", href: "/book", current: false },
     // { name: "Hod Status", href: "/hodstatus", current: false },
   ]);
-  // useEffect(() => {
-  //   const response = instance.get("userdetails/");
-  //   console.log(response);
-  // }, []);
+  useEffect(() => {
+    const Auth = localStorage.getItem("accesstoken");
+    if (!Auth) {
+      navigate("/");
+    } else {
+      // navigate("")
+    }
+  });
 
   useEffect(() => {
     const response = instance.get("navbar/");
@@ -32,7 +36,7 @@ export default function Nav() {
       .catch(function (error) {
         console.log(error.response.status);
         if (error.response.status === 401) {
-          navigate("/");
+          // navigate("/");
         }
       });
   }, []);
@@ -76,7 +80,7 @@ export default function Nav() {
             <ul
               className={` flex-col sm:flex-row justify-evenly pb-2 absolute md:static md:z-auto z-50 left-0 w-full ${
                 open
-                  ? "top-12 block justify-between p-4 bg-gradient-to-r from-gray-700 via-gray-900 to-black"
+                  ? "top-12 sm:flex block justify-between p-4 sm:bg-none bg-gradient-to-r from-gray-700 via-gray-900 to-black"
                   : "hidden sm:flex"
               }`}>
               {navigation.map((item) => (

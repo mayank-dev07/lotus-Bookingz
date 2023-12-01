@@ -6,9 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function BookForm() {
   const navigate = useNavigate();
-  // console.log(
-  //   new Date(new Date().setDate(new Date().getDate() + 1)).toISOString()
-  // );
   const [Options, setOptions] = useState([]);
 
   const [hallData, sethallData] = useState({
@@ -35,6 +32,7 @@ export default function BookForm() {
       ...hallData,
       [e.target.name]: e.target.value,
     });
+    console.log(hallData.from_time);
   };
 
   useEffect(() => {
@@ -92,7 +90,7 @@ export default function BookForm() {
                   </label>
                   <div className="mt-2">
                     <select
-                      required
+                        
                       value={hallData.hall}
                       onChange={handleChange}
                       name="hall"
@@ -121,7 +119,7 @@ export default function BookForm() {
                     <div className="mt-2">
                       <input
                         onChange={handleChange}
-                        required
+                          
                         id="purpose"
                         name="purpose"
                         placeholder="Purpose to book hall"
@@ -138,7 +136,7 @@ export default function BookForm() {
                     <div className="mt-2">
                       <input
                         onChange={handleChange}
-                        required
+                          
                         type="number"
                         id="participant_count"
                         name="participant_count"
@@ -160,7 +158,7 @@ export default function BookForm() {
                     <textarea
                       onChange={handleChange}
                       // value={hallData.employee_remark}
-                      required
+                        
                       id="employee_remark"
                       name="employee_remark"
                       rows={3}
@@ -185,7 +183,7 @@ export default function BookForm() {
                       onChange={handleChange}
                       // value={hallData.from_date}
                       min={new Date().toISOString().split("T")[0]}
-                      required
+                        
                       type="date"
                       name="from_date"
                       id="from_date"
@@ -209,7 +207,7 @@ export default function BookForm() {
                           .toISOString()
                           .split("T")[0]
                       }
-                      required
+                        
                       type="date"
                       name="to_date"
                       id="to_date"
@@ -230,7 +228,7 @@ export default function BookForm() {
                     <input
                       onChange={handleChange}
                       // value={hallData.from_time}
-                      required
+                        
                       type="time"
                       name="from_time"
                       id="from_time"
@@ -249,7 +247,7 @@ export default function BookForm() {
                     <input
                       onChange={handleChange}
                       // value={hallData.to_time}
-                      required
+                        
                       type="time"
                       name="to_time"
                       id="to_time"
