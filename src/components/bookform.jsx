@@ -3,18 +3,22 @@ import { useState, useEffect } from "react";
 import instance from "./axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function BookForm() {
   const navigate = useNavigate();
   const [Options, setOptions] = useState([]);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
 
   const [hallData, sethallData] = useState({
     hall: "",
     purpose: "",
     employee_remark: "",
     participant_count: "",
-    from_date: "",
-    to_date: "",
+    // from_date: "",
+    // to_date: "",
     from_time: "",
     to_time: "",
   });
@@ -32,7 +36,6 @@ export default function BookForm() {
       ...hallData,
       [e.target.name]: e.target.value,
     });
-    console.log(hallData.from_time);
   };
 
   useEffect(() => {
@@ -50,22 +53,24 @@ export default function BookForm() {
 
   function book(e) {
     e.preventDefault();
+    hallData.from_date = startDate.toISOString().split("T")[0];
+    hallData.to_date = endDate.toISOString().split("T")[0];
     console.log(hallData);
-    try {
-      const response = instance.post("bookhall/", hallData);
-      response
-        .then((value) => {
-          console.log(value);
-          notify("Hall booked successfully !");
-        })
-        .catch((error) => {
-          console.log(error.response.data[0]);
-          notify(error.response.data[0]);
-          e.target.reset();
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const response = instance.post("bookhall/", hallData);
+    //   response
+    //     .then((value) => {
+    //       console.log(value);
+    //       notify("Hall booked successfully !");
+    //       e.target.reset();
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response.data[0]);
+    //       notify(error.response.data[0]);
+    //     });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   return (
@@ -90,7 +95,6 @@ export default function BookForm() {
                   </label>
                   <div className="mt-2">
                     <select
-                        
                       value={hallData.hall}
                       onChange={handleChange}
                       name="hall"
@@ -119,7 +123,6 @@ export default function BookForm() {
                     <div className="mt-2">
                       <input
                         onChange={handleChange}
-                          
                         id="purpose"
                         name="purpose"
                         placeholder="Purpose to book hall"
@@ -136,7 +139,6 @@ export default function BookForm() {
                     <div className="mt-2">
                       <input
                         onChange={handleChange}
-                          
                         type="number"
                         id="participant_count"
                         name="participant_count"
@@ -158,7 +160,7 @@ export default function BookForm() {
                     <textarea
                       onChange={handleChange}
                       // value={hallData.employee_remark}
-                        
+
                       id="employee_remark"
                       name="employee_remark"
                       rows={3}
@@ -179,17 +181,24 @@ export default function BookForm() {
                     Date from
                   </label>
                   <div className="mt-2 ">
-                    <input
+                    <DatePicker
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
+                      selected={startDate}
+                      name="from_date"
+                      onChange={(startDate) => setStartDate(startDate)}
+                      minDate={new Date()}
+                      placeholderText="Select a date"
+                    />
+                    {/* <input
                       onChange={handleChange}
                       // value={hallData.from_date}
                       min={new Date().toISOString().split("T")[0]}
-                        
                       type="date"
                       name="from_date"
                       id="from_date"
                       placeholder=""
                       className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className=" w-full sm:w-2/5">
@@ -199,7 +208,15 @@ export default function BookForm() {
                     Date to
                   </label>
                   <div className="mt-2">
-                    <input
+                    <DatePicker
+                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
+                      selected={endDate}
+                      name="from_date"
+                      onChange={(endDate) => setEndDate(endDate)}
+                      minDate={startDate}
+                      placeholderText="Select a date"
+                    />
+                    {/* <input
                       onChange={handleChange}
                       // value={hallData.to_date}
                       min={
@@ -207,13 +224,12 @@ export default function BookForm() {
                           .toISOString()
                           .split("T")[0]
                       }
-                        
                       type="date"
                       name="to_date"
                       id="to_date"
                       placeholder=""
                       className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -228,7 +244,7 @@ export default function BookForm() {
                     <input
                       onChange={handleChange}
                       // value={hallData.from_time}
-                        
+
                       type="time"
                       name="from_time"
                       id="from_time"
@@ -247,7 +263,7 @@ export default function BookForm() {
                     <input
                       onChange={handleChange}
                       // value={hallData.to_time}
-                        
+
                       type="time"
                       name="to_time"
                       id="to_time"

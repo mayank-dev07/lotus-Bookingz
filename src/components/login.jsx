@@ -66,7 +66,7 @@ export default function Login() {
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://10.21.83.60:8000/hall/api/token/",
+        "http://10.21.81.18:8000/hall/api/token/",
         credentials
       );
       console.log(response.data);

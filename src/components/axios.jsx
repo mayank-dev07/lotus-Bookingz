@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://10.21.83.60:8000/hall/",
+  baseURL: "http://10.21.81.18:8000/hall/",
 });
 
 instance.interceptors.request.use(
@@ -9,6 +9,7 @@ instance.interceptors.request.use(
     const token = localStorage.getItem("accesstoken");
     if (token) {
       // dispatch(loadingAction(true));
+      // console.log(loadingAction);
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -30,7 +31,7 @@ instance.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("refreshToken");
         const response = await axios.post(
-          "http://10.21.83.60:8000/hall/api/token/refresh/",
+          "http://10.21.81.18:8000/hall/api/token/refresh/",
           {
             refresh: refreshToken,
             headers: {
