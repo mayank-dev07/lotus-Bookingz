@@ -1,7 +1,6 @@
-import Auth from "./axios";
 import { useState, useEffect, useRef } from "react";
 import instance from "./axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "./loader";
 
@@ -60,7 +59,7 @@ export default function HallStatus() {
             }
           }
         } else {
-          console.log(error);
+          console.log("not found");
         }
       })
       .catch(function (error) {

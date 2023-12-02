@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "./loader";
 
@@ -14,6 +14,7 @@ export default function Login() {
     if (Auth) {
       navigate("/home");
     } else {
+      console.log("no change");
     }
   });
 
@@ -36,7 +37,7 @@ export default function Login() {
   const Submit = async (e) => {
     e.preventDefault();
     console.log(credentials);
-    const error = {};
+    // const error = {};
 
     // if (!credentials.email) {
     //   error.email = "Please enter email";
@@ -81,6 +82,7 @@ export default function Login() {
       if (error.response.status === 401) {
         notify("Invalid user");
       } else {
+        console.log("no change");
       }
     }
   };

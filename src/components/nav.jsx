@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { AlignJustify } from "lucide-react";
 import { Link } from "react-router-dom";
 import instance from "./axios";
@@ -14,6 +14,7 @@ export default function Nav() {
     if (!Auth) {
       navigate("/");
     } else {
+      console.log("no change");
     }
   });
 
@@ -28,6 +29,7 @@ export default function Nav() {
       .catch(function (error) {
         console.log(error.response.status);
         if (error.response.status === 401) {
+          // navigate("/");
         }
       });
   }, []);
