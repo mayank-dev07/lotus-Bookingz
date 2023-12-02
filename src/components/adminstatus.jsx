@@ -105,7 +105,6 @@ export default function AdminStatus() {
   return (
     <>
       <ToastContainer />
-
       <div className="relative overflow-x-auto shadow-md  h-screen">
         {/* {people.length > 0 ? ( */}
         <table className="w-full text-sm text-gray-400">
