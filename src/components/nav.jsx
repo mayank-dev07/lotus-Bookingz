@@ -3,7 +3,6 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { AlignJustify } from "lucide-react";
 import { Link } from "react-router-dom";
 import instance from "./axios";
-import axios from "axios";
 
 export default function Nav() {
   const navigate = useNavigate();
