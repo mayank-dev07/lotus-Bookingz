@@ -17,8 +17,6 @@ export default function BookForm() {
     purpose: "",
     employee_remark: "",
     participant_count: "",
-    // from_date: "",
-    // to_date: "",
     from_time: "",
     to_time: "",
   });
@@ -258,7 +256,6 @@ export default function BookForm() {
             </div>
           </form>
         </div>
-        <ToastContainer />
       </div>
     </>
   );

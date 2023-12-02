@@ -5,12 +5,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function HallCreate() {
-  // useEffect(() => {
-  //   console.log("bhnjum ");
-  //   return () => {
-  //     console.log("ok");
-  //   };
-  // }, []);
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -236,7 +230,6 @@ export default function HallCreate() {
               </button>
             </div>
           </form>
-          <ToastContainer />
         </div>
       </div>
     </>

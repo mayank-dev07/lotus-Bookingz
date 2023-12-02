@@ -9,19 +9,12 @@ export default function Nav() {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-  const [navigation, setnavigation] = useState([
-    // { name: "Home", href: "/home", current: false },
-    // { name: "Status", href: "/status", current: false },
-    // { name: "Create Hall", href: "/hall", current: false },
-    // { name: "Booking", href: "/book", current: false },
-    // { name: "Hod Status", href: "/hodstatus", current: false },
-  ]);
+  const [navigation, setnavigation] = useState([]);
   useEffect(() => {
     const Auth = localStorage.getItem("accesstoken");
     if (!Auth) {
       navigate("/");
     } else {
-      // navigate("")
     }
   });
 
@@ -36,7 +29,6 @@ export default function Nav() {
       .catch(function (error) {
         console.log(error.response.status);
         if (error.response.status === 401) {
-          // navigate("/");
         }
       });
   }, []);

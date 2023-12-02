@@ -3,15 +3,13 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "http://10.21.81.18:8000/hall/",
 });
-
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accesstoken");
     if (token) {
-      // dispatch(loadingAction(true));
-      // console.log(loadingAction);
       config.headers.Authorization = `Bearer ${token}`;
     }
+    console.log(config);
     return config;
   },
   (error) => Promise.reject(error)
@@ -19,7 +17,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    // dispatch(loadingAction(false));
     console.log(response);
     return response;
   },
@@ -30,15 +27,9 @@ instance.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const refreshToken = localStorage.getItem("refreshToken");
-        const response = await axios.post(
-          "http://10.21.81.18:8000/hall/api/token/refresh/",
-          {
-            refresh: refreshToken,
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
+        const response = await instance.post("api/token/refresh/", {
+          refresh: refreshToken,
+        });
         console.log(response);
         localStorage.setItem("accesstoken", response.data.access);
         originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
@@ -48,16 +39,8 @@ instance.interceptors.response.use(
         console.log(error);
         console.log(error.response.status);
         if (error.response.status === 401) {
-          // instance.response.redirect("/");
-          // <Redirect to="/" />;
-          // return redirect("/");
-          window.location.href = "/";
           localStorage.setItem("accesstoken", "");
           localStorage.setItem("refreshToken", "");
-
-          // {
-          //   Logout();
-          // }
         }
       }
     }

@@ -1,25 +1,4 @@
-import { useEffect, useState } from "react";
-import instance from "./axios";
-
 export default function Home() {
-  const [Halls, setHalls] = useState([]);
-
-  // useEffect(() => {
-  //   const response = instance.get("list/");
-  //   console.log(response);
-  //   response
-  //     .then(function (value) {
-  //       console.log(value.data);
-  //       setHalls(value.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error.response.status);
-  //       if (error.response.status === 401) {
-  //         // navigate("/");
-  //       }
-  //     });
-  // }, []);
-
   return (
     <>
       <div className=" mx-auto">
@@ -44,30 +23,6 @@ export default function Home() {
           </span>
         </div>
       </div>
-
-      {/* <ul role="list" className="bg-gray-300">
-        {Halls.map((person, index) => (
-          <li
-            key={index}
-            className="flex justify-center px-24 border-b border-1 border-gray-400 p-3">
-            <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-black">
-                {person.name}
-              </p>
-            </div>
-            <div className="flex min-w-0 gap-x-4">
-              {person.hall_image.map((image, index) => (
-                <img
-                  key={index}
-                  className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                  src={image.image}
-                  alt=""
-                />
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul> */}
     </>
   );
 }
