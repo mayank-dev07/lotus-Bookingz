@@ -189,16 +189,6 @@ export default function BookForm() {
                       minDate={new Date()}
                       placeholderText="Select a date"
                     />
-                    {/* <input
-                      onChange={handleChange}
-                      // value={hallData.from_date}
-                      min={new Date().toISOString().split("T")[0]}
-                      type="date"
-                      name="from_date"
-                      id="from_date"
-                      placeholder=""
-                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
-                    /> */}
                   </div>
                 </div>
                 <div className=" w-full sm:w-2/5">
@@ -216,20 +206,6 @@ export default function BookForm() {
                       minDate={startDate}
                       placeholderText="Select a date"
                     />
-                    {/* <input
-                      onChange={handleChange}
-                      // value={hallData.to_date}
-                      min={
-                        new Date(new Date().setDate(new Date().getDate() + 1))
-                          .toISOString()
-                          .split("T")[0]
-                      }
-                      type="date"
-                      name="to_date"
-                      id="to_date"
-                      placeholder=""
-                      className="flex w-full bg-red-200/20 rounded-md  p-2 text-white shadow-sm  border-gray-200"
-                    /> */}
                   </div>
                 </div>
               </div>
@@ -243,8 +219,6 @@ export default function BookForm() {
                   <div className="mt-2">
                     <input
                       onChange={handleChange}
-                      // value={hallData.from_time}
-
                       type="time"
                       name="from_time"
                       id="from_time"
