@@ -56,21 +56,21 @@ export default function BookForm() {
     hallData.from_date = startDate.toISOString().split("T")[0];
     hallData.to_date = endDate.toISOString().split("T")[0];
     console.log(hallData);
-    // try {
-    //   const response = instance.post("bookhall/", hallData);
-    //   response
-    //     .then((value) => {
-    //       console.log(value);
-    //       notify("Hall booked successfully !");
-    //       e.target.reset();
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.response.data[0]);
-    //       notify(error.response.data[0]);
-    //     });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const response = instance.post("bookhall/", hallData);
+      response
+        .then((value) => {
+          console.log(value);
+          notify("Hall booked successfully !");
+          e.target.reset();
+        })
+        .catch((error) => {
+          console.log(error.response.data[0]);
+          notify(error.response.data[0]);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
