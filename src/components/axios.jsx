@@ -39,6 +39,7 @@ instance.interceptors.response.use(
         console.log(error);
         console.log(error.response.status);
         if (error.response.status === 401) {
+          window.location.href = "/";
           localStorage.setItem("accesstoken", "");
           localStorage.setItem("refreshToken", "");
         }
